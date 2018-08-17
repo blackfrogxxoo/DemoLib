@@ -1,8 +1,8 @@
-package me.black.library;
+package me.black.library.util;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class Bus {
+public class EvtBus {
     public static void register(Object object) {
         EventBus.getDefault().register(object);
     }

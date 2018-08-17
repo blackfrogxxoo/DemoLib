@@ -1,4 +1,4 @@
-package me.black.library;
+package me.black.library.util;
 
 import android.content.Context;
 import android.net.Uri;

@@ -1,4 +1,4 @@
-package me.black.library;
+package me.black.library.glide;
 
 import android.support.annotation.NonNull;
 import com.bumptech.glide.load.Options;

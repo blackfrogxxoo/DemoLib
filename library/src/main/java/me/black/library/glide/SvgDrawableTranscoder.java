@@ -1,4 +1,4 @@
-package me.black.library;
+package me.black.library.glide;
 
 import android.graphics.Picture;
 import android.graphics.drawable.PictureDrawable;

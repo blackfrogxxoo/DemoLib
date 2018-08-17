@@ -1,4 +1,4 @@
-package me.black.library;
+package me.black.library.util.java;
 
 public class RegularUtil {
     /**

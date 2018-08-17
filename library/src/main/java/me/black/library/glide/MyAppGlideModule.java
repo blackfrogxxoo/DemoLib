@@ -1,4 +1,4 @@
-package me.black.library;
+package me.black.library.glide;
 
 import android.content.Context;
 import android.graphics.drawable.PictureDrawable;
@@ -11,6 +11,9 @@ import com.bumptech.glide.module.AppGlideModule;
 import com.caverock.androidsvg.SVG;
 
 import java.io.InputStream;
+
+import me.black.library.glide.SvgDecoder;
+import me.black.library.glide.SvgDrawableTranscoder;
 
 @GlideModule
 public class MyAppGlideModule extends AppGlideModule {

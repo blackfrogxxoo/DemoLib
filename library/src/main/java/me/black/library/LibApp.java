@@ -7,6 +7,7 @@ public class LibApp extends Application {
 
     /** Instance of the current application. */
     private static LibApp instance;
+    private static String baseUrl;
 
     /**
      * Constructor.

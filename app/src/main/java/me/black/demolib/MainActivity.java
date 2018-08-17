@@ -7,19 +7,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Arrays;
 
 import me.black.demolib.bean.BaseBean;
-import me.black.library.AndPermissionUtil;
-import me.black.library.Bus;
-import me.black.library.CallUtil;
-import me.black.library.GlideApp;
-import me.black.library.GlideRequest;
-import me.black.library.GlideUtil;
-import me.black.library.SvgSoftwareLayerSetter;
+import me.black.demolib.http.HttpExecutor;
+import me.black.library.glide.GlideApp;
+import me.black.library.glide.GlideRequest;
+import me.black.library.util.AndPermissionUtil;
+import me.black.library.util.EvtBus;
+import me.black.library.util.CallUtil;
+import me.black.library.glide.SvgSoftwareLayerSetter;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bus.register(this);
+        EvtBus.register(this);
         setContentView(R.layout.activity_main);
 
         AndPermissionUtil.request(this, o -> {
@@ -41,7 +44,17 @@ public class MainActivity extends AppCompatActivity {
         btnCall.setOnClickListener(v -> {
             BaseBean baseBean = new BaseBean();
             baseBean.phone = "10001";
-            Bus.post(baseBean);
+            EvtBus.post(baseBean);
+        });
+        Button btnHttp = findViewById(R.id.btn_http);
+        btnHttp.setOnClickListener(v -> {
+            HttpExecutor.weatherApi()
+                    .now("1e9zav6tbioroex3", "chengdu", "zh-Hans", "c")
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(o -> {
+                        Toast.makeText(this, o.getResults().get(0).getNow().getTemperature(), Toast.LENGTH_LONG).show();
+                    }, Throwable::printStackTrace);
         });
 
         ImageView imageView = findViewById(R.id.iv_test);
@@ -66,6 +79,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Bus.unregister(this);
+        EvtBus.unregister(this);
     }
 }

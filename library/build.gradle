@@ -51,7 +51,9 @@ dependencies {
     api "com.yanzhenjie:permission:$rootProject.ext.andPermissionVersion"
     // event bus
     api "org.greenrobot:eventbus:$rootProject.ext.eventBusVersion"
-
+    // svg
     api 'com.caverock:androidsvg-aar:1.3'
+    // log
+    api 'com.orhanobut:logger:1.15'
 
 }

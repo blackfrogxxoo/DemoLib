@@ -1,4 +1,4 @@
-package me.black.library;
+package me.black.library.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.net.Uri;
 
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.Permission;
+
+import me.black.library.util.java.RegularUtil;
 
 public class CallUtil {
     @SuppressLint("MissingPermission")
