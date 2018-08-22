@@ -1,9 +1,10 @@
 package me.black.demolib;
 
+import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,10 +18,11 @@ import me.black.demolib.bean.BaseBean;
 import me.black.demolib.http.HttpExecutor;
 import me.black.library.glide.GlideApp;
 import me.black.library.glide.GlideRequest;
-import me.black.library.util.AndPermissionUtil;
-import me.black.library.util.EvtBus;
-import me.black.library.util.CallUtil;
 import me.black.library.glide.SvgSoftwareLayerSetter;
+import me.black.library.util.AndPermissionUtil;
+import me.black.library.util.CallUtil;
+import me.black.library.util.EvtBus;
+import me.black.zxing.QRScannerActivity;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -55,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
                     .subscribe(o -> {
                         Toast.makeText(this, o.getResults().get(0).getNow().getTemperature(), Toast.LENGTH_LONG).show();
                     }, Throwable::printStackTrace);
+        });
+        Button btnZxing = findViewById(R.id.btn_zxing);
+        btnZxing.setOnClickListener(v -> {
+            Intent it = new Intent(this, QRScannerActivity.class);
+            startActivity(it);
         });
 
         ImageView imageView = findViewById(R.id.iv_test);
