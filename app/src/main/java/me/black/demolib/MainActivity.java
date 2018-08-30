@@ -15,6 +15,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.Arrays;
 
 import me.black.demolib.bean.BaseBean;
+import me.black.demolib.bean.CheckMobileBean;
 import me.black.demolib.http.HttpExecutor;
 import me.black.library.glide.GlideApp;
 import me.black.library.glide.GlideRequest;
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnCall = findViewById(R.id.btn_call);
         btnCall.setOnClickListener(v -> {
             BaseBean baseBean = new BaseBean();
-            baseBean.phone = "10001";
             EvtBus.post(baseBean);
         });
         Button btnHttp = findViewById(R.id.btn_http);
@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(o -> {
                         Toast.makeText(this, o.getResults().get(0).getNow().getTemperature(), Toast.LENGTH_LONG).show();
+                    }, Throwable::printStackTrace);
+        });
+        Button btnYbya = findViewById(R.id.btn_ybya);
+        btnYbya.setOnClickListener(v -> {
+            HttpExecutor.testApi().checkMobile(new CheckMobileBean.Request("18523710221"))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(o -> {
+                        Log.i(TAG, "onCreate: " + o.code);
                     }, Throwable::printStackTrace);
         });
         Button btnZxing = findViewById(R.id.btn_zxing);
@@ -81,11 +90,12 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.parse("https://developer.android.com/_static/e408b0790b/images/android/lockup.svg");
         requestBuilder.load(uri).into(imageView);
 //        GlideUtil.load(imageView, R.drawable.ic_launcher_foreground, "https://developer.android.com/_static/e408b0790b/images/android/lockup.svg");
+
     }
 
     @Subscribe
     public void testBus(BaseBean baseBean) {
-        CallUtil.call(this, baseBean.phone);
+        CallUtil.call(this, "10001");
     }
 
     @Override
