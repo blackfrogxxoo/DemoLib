@@ -9,14 +9,13 @@
     Allows Glide to monitor connectivity status and restart failed requests if users go from a
     a disconnected to a connected network state.
     -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!--
-    zxing requiring
-    -->
+    <!--     zxing requiring -->
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera.front" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -36,6 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name="me.black.zxing.QRScannerActivity" />
+        <activity android:name=".ChartActivity"></activity>
     </application>
 
 </manifest>

@@ -23,6 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/btn_http"
         android:text="zxing" />
+    <Button
+        android:id="@+id/btn_chart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/btn_zxing"
+        android:text="chart" />
 
     <ImageView
         android:id="@+id/iv_test"

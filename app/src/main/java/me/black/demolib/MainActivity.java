@@ -63,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
             Intent it = new Intent(this, QRScannerActivity.class);
             startActivity(it);
         });
+        Button btnChart = findViewById(R.id.btn_chart);
+        btnChart.setOnClickListener(v -> {
+            Intent it = new Intent(this, ChartActivity.class);
+            startActivity(it);
+        });
 
         ImageView imageView = findViewById(R.id.iv_test);
 
