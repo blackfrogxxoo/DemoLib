@@ -1,11 +1,11 @@
-package me.black.library.http.interceptor;
+package me.black.demolib.http.interceptor;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import me.black.library.http.HttpParamsUtil;
+import me.black.demolib.http.HttpParamsUtil;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;

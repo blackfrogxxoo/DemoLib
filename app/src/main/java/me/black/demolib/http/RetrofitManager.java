@@ -1,10 +1,10 @@
-package me.black.library.http;
+package me.black.demolib.http;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import me.black.library.http.interceptor.LogInterceptor;
+import me.black.demolib.http.interceptor.LogInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

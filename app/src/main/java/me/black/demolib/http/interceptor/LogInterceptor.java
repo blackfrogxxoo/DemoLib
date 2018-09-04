@@ -1,4 +1,4 @@
-package me.black.library.http.interceptor;
+package me.black.demolib.http.interceptor;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -23,59 +23,14 @@ public class LogInterceptor implements Interceptor {
         }
         Request request = chain.request();
         request = request.newBuilder()
-                .addHeader("Cookie", "XDEBUG_SESSION=PHPSTORM").build();
+                .addHeader("params", createHttpHeaderParams())
+//                .addHeader("Cookie", "XDEBUG_SESSION=PHPSTORM")
+                .build();
 
         RequestBody body = request.body();
         StringBuilder params = new StringBuilder();
         StringBuilder result = new StringBuilder();
         generateParamsAndResult(body, result, params);
-        //        StringBuilder params = new StringBuilder();
-//        if (body instanceof MultipartBody) { // 获取MultipartBody中的Parts中的Headers
-//            result = new StringBuilder().append("Multipart:\n");
-//            MultipartBody multipartBody = (MultipartBody) body;
-//            for (MultipartBody.Part part : multipartBody.parts()) {
-//                try {
-//                    Field headers = part.getClass().getDeclaredField("headers");
-//                    headers.setAccessible(true);
-//                    final Headers headers2 = (Headers) headers.get(part);
-//                    result
-//                            .append("\t")
-//                            .append(headers2.toString());
-//                } catch (NoSuchFieldException e) {
-//                    e.printStackTrace();
-//                } catch (IllegalAccessException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        } else if (body instanceof FormBody) {
-//            result = new StringBuilder().append("Form:\n");
-//            params.append("?");
-//            FormBody formBody = (FormBody) body;
-//            for (int i = 0; i < formBody.size(); i++) {
-//                params
-//                        .append(formBody.name(i))
-//                        .append("=")
-//                        .append(formBody.value(i))
-//                        .append("&");
-//                result
-//                        .append("\t")
-//                        .append(formBody.name(i)).append(": ")
-//                        .append("\t")
-//                        .append(formBody.value(i)).append("\n");
-//            }
-//            if (params.length() > 0)
-//                params.deleteCharAt(params.length() - 1);
-//        } else if (body instanceof RequestBody) {
-//            RequestBody requestBody = body;
-//            if (requestBody.contentType() != null) {
-//                if (("application/json; charset=utf-8").equals(requestBody.contentType().toString())) {
-//                    result = new StringBuilder().append("RequestBody:\n");
-//                    result.append("application/json; charset=utf-8");
-//                }
-//            }
-//        }
-
-//            LogUtil.i(String.format("Request:\n%s\n%s", request, result));
         String tag = request.url().toString();
         List<String> paths = request.url().pathSegments();
         if (paths != null && paths.size() > 0) {
@@ -95,6 +50,11 @@ public class LogInterceptor implements Interceptor {
         return response.newBuilder()
                 .body(okhttp3.ResponseBody.create(mediaType, content))
                 .build();
+    }
+
+    private String createHttpHeaderParams() {
+
+        return "";
     }
 
     private void generateParamsAndResult(RequestBody body, StringBuilder result,
@@ -135,5 +95,9 @@ public class LogInterceptor implements Interceptor {
             if (params.length() > 0)
                 params.deleteCharAt(params.length() - 1);
         }
+    }
+
+    public static class HeaderParams {
+        
     }
 }
