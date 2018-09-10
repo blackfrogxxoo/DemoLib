@@ -7,6 +7,8 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 
 import me.black.library.LibApp;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action0;
 
 public final class UIUtil {
 
@@ -32,4 +34,7 @@ public final class UIUtil {
         return getResources().getString(resId, formatArgus);
     }
 
+    public static void post(Action0 action0) {
+        AndroidSchedulers.mainThread().createWorker().schedule(action0);
+    }
 }
