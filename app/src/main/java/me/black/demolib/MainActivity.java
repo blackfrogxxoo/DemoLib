@@ -77,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
             Intent it = new Intent(this, ChartActivity.class);
             startActivity(it);
         });
+        Button btnTabDemo = findViewById(R.id.btn_tab_demo);
+        btnTabDemo.setOnClickListener(v -> {
+            Intent it = new Intent(this, TabDemoActivity.class);
+            startActivity(it);
+        });
 
         ImageView imageView = findViewById(R.id.iv_test);
 
